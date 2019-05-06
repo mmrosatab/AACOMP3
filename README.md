@@ -1,2 +1,3 @@
 # AACOMP3
-Atividade acadêmica de computação 3
+
+Este repositório se destina a Atividade Acadêmica de Computação III. 
