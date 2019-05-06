@@ -1,6 +1,6 @@
 # AACOMP3
 
-Este repositório se destina a Atividade Acadêmica de Computação III da UFRRJ. O trabalho consiste em um construir uma aplicação Web utilizando padrões arquiteturais.
+Este repositório se destina a Atividade Acadêmica de Computação III da UFRRJ. O trabalho consiste em um construir uma aplicação Web voltada para "tal propósito" utilizando padrões arquiteturais e demais conceitos vistos em.
 
 ##### Colaboradores
 - Andressa Oliveira
