@@ -9,4 +9,12 @@ Este repositório se destina a Atividade Acadêmica de Computação III da UFRRJ
 - Mayara Marques
 - Samara Almendane
 
+[X] Camada de apresentação
+
+[X] Camada de domínio
+
+[X] Camada de dados
+
+
+
 
