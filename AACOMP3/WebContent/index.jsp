@@ -4,9 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href='css/estilo.css'></link>
+<title>AACOMP3</title>
 </head>
-<body>
-Ola 
-</body>
+	<body>
+		<header>
+		<h1>AA DE COMP3</h1>
+		</header>
+		Ola 
+	</body>
 </html>
