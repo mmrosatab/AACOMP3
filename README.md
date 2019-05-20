@@ -5,10 +5,8 @@ Este repositório se destina a Atividade Acadêmica de Computação III da UFRRJ
 ##### Colaboradores
 
 + [Andressa Oliveira](https://github.com/a-oliveira)
-+ [Desiree Araújo](https://github.com/a-oliveira)
 + [Mayara Marques](https://github.com/mmrosatab)
-+ [Fernanda Oliveira](https://github.com/nannda21a)
-+ [Samara Almendane](https://github.com/SamaraAlmendane)
+
 
 
 #### Índice
