@@ -2,7 +2,7 @@
 
 Este repositório se destina a Atividade Acadêmica de Computação III da UFRRJ. O trabalho consiste em um construir uma aplicação Web voltada para auxiliar a preservação de museus, de seus acervos e obras através de avaliações dos visitantes utilizando padrões arquiteturais e testes vistos na disciplina Computação III.
 
-##### Colaboradores
+#### Colaboradores
 
 + [Andressa Oliveira](https://github.com/a-oliveira)
 + [Mayara Marques](https://github.com/mmrosatab)
