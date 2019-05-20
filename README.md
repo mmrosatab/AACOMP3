@@ -11,6 +11,7 @@ Este repositório se destina a Atividade Acadêmica de Computação III da UFRRJ
 
 #### Índice
 
+* [Tecnologias utilizadas](#tecnologias-utilizadas)
 * [Organização dos pacotes do projeto](#organizacao-dos-pacotes-do-projeto)
 * [Camada de apresentação](#camada-de-apresentacao)
 * [Camada de domínio](#camada-de-dominio)
@@ -18,6 +19,10 @@ Este repositório se destina a Atividade Acadêmica de Computação III da UFRRJ
 * [Camada de dados](#camada-de-dados)
 	* [Metodologia](#metodologia-camada-de-dados)
 
+#### Tecnologias utilizadas
+
++ [Apache Tomcat 9]
++ [Apache Derby DB]
 
 #### Organização dos pacotes do projeto  
 
