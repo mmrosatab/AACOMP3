@@ -23,6 +23,7 @@ Este repositório se destina a Atividade Acadêmica de Computação III da UFRRJ
 
 + [Apache Tomcat 9]
 + [Apache Derby DB]
++ [Selenium]
 
 #### Organização dos pacotes do projeto  
 
