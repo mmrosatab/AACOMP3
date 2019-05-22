@@ -4,6 +4,8 @@ Este repositório se destina a Atividade Acadêmica de Computação III da UFRRJ
 
 #### Colaboradores
 
+(Clique no link para visitar o perfil)
+
 + [Andressa Oliveira](https://github.com/a-oliveira)
 + [Mayara Marques](https://github.com/mmrosatab)
 
@@ -21,9 +23,11 @@ Este repositório se destina a Atividade Acadêmica de Computação III da UFRRJ
 
 #### Tecnologias utilizadas
 
-+ [Apache Tomcat 9]
-+ [Apache Derby DB]
-+ [Selenium]
+(Clique no link para fazer download)
+
++ [apache-tomcat-9.0.16](https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.16/bin/apache-tomcat-9.0.16.zip)
++ [db-derby-10.14.2.0-bin](us.mirrors.quenda.co/apache//db/derby/db-derby-10.14.2.0/db-derby-10.14.2.0-bin.zip)
++ [selenium-java-3.9.1](https://selenium-release.storage.googleapis.com/3.9/selenium-java-3.9.1.zip)
 
 #### Organização dos pacotes do projeto  
 
