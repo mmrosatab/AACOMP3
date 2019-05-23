@@ -13,7 +13,7 @@ Este repositório se destina a Atividade Acadêmica de Computação III da UFRRJ
 
 #### Índice
 
-* [Especificações das máquinas](#especificaçoes-das-maquinas)
+* [Especificações das máquinas](#especificacoes-das-maquinas)
 * [Tecnologias utilizadas](#tecnologias-utilizadas)
 * [Organização dos pacotes do projeto](#organizacao-dos-pacotes-do-projeto)
 * [Camada de apresentação](#camada-de-apresentacao)
