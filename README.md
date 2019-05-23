@@ -36,7 +36,7 @@ Este repositório se destina a Atividade Acadêmica de Computação III da UFRRJ
 
 (Clique no link para fazer download)
 
-+ [java 10.0.2 2018-07-17]
++ java 10.0.2 2018-07-17
 + [apache-tomcat-9.0.16](https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.16/bin/apache-tomcat-9.0.16.zip)
 + [db-derby-10.14.2.0-bin](https://ftp.unicamp.br/pub/apache//db/derby/db-derby-10.14.2.0/db-derby-10.14.2.0-bin.zip)
 + [selenium-java-3.9.1](https://selenium-release.storage.googleapis.com/3.9/selenium-java-3.9.1.zip)
