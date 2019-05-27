@@ -26,11 +26,11 @@ Este repositório se destina a Atividade Acadêmica de Computação III da UFRRJ
 #### Especificações das máquinas
 
 - [x] Linux Mint 18.3 Cinnamon 64-bit
-- [x] Linux Ubuntu ??? 64 bit
+- [ ] Linux Ubuntu ??? 64 bit
 
 #### Ferramentas
 
-+ IDE Eclipse 2018-12 (4.10.0)
+- [x] IDE Eclipse 2018-12 (4.10.0)
 
 #### Tecnologias utilizadas
 
