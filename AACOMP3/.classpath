@@ -26,5 +26,6 @@
 	<classpathentry kind="lib" path="/home/mmrosa/MEGA/MEGAsync/Faculdade/20191/COMP3/programas/selenium-java-3.9.1/libs/byte-buddy-1.7.9.jar"/>
 	<classpathentry kind="lib" path="/home/mmrosa/MEGA/MEGAsync/Faculdade/20191/COMP3/programas/selenium-java-3.9.1/client-combined-3.9.1.jar"/>
 	<classpathentry kind="lib" path="/home/mmrosa/MEGA/MEGAsync/Faculdade/20191/COMP3/programas/selenium-java-3.9.1/client-combined-3.9.1-sources.jar"/>
+	<classpathentry kind="lib" path="libderby/derby.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

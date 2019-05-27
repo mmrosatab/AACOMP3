@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Mon May 27 11:32:03 BRT 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-016a-f9b4-933e-00000326f5e0 
+on database directory /home/mmrosa/MyDB2 with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@41906a77 
+Loaded from file:/home/mmrosa/MEGA/MEGAsync/GitHub%20Commits/AACOMP3/AACOMP3/libderby/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=10.0.2+13
+user.dir=/home/mmrosa/MEGA/MEGAsync/GitHub Commits/AACOMP3/AACOMP3
+os.name=Linux
+os.arch=amd64
+os.version=4.10.0-38-generic
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
