@@ -25,8 +25,8 @@ Este repositório se destina a Atividade Acadêmica de Computação III da UFRRJ
 	
 #### Especificações das máquinas
 
-+ Linux Mint 18.3 Cinnamon 64-bit
-+ Linux Ubuntu ??? 64 bit
+- [x] Linux Mint 18.3 Cinnamon 64-bit
+- [x] Linux Ubuntu ??? 64 bit
 
 #### Ferramentas
 
