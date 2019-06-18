@@ -44,6 +44,14 @@ Este repositório se destina a Atividade Acadêmica de Computação III da UFRRJ
 
 #### Organização dos pacotes do projeto  
 
+- src
+	- dados
+		- exception
+	- dominio
+		- exception
+	- testes
+	- mockObjets
+
 #### Camada de apresentação
 
 #### Camada de domínio
