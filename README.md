@@ -13,14 +13,14 @@ Este repositório se destina a Atividade Acadêmica de Computação III da UFRRJ
 
 #### Índice
 
-* [Especificações das máquinas](#especificacoes-das-maquinas)
+* [Especificações das máquinas](#especificações-das-máquinas)
 * [Tecnologias utilizadas](#tecnologias-utilizadas)
-* [Organização dos pacotes do projeto](#organizacao-dos-pacotes-do-projeto)
-* [Camada de apresentação](#camada-de-apresentacao)
+* [Organização dos pacotes do projeto](#organização-dos-pacotes-do-projeto)
+* [Camada de apresentação](#camada-de-apresentação)
 * [Camada de domínio](#camada-de-dominio)
-	* [Metodologia](#metodologia-camada-de-dominio)
+	* [Modelo de domínio simples](#modelo-de-domínio-simples)
 * [Camada de dados](#camada-de-dados)
-	* [Metodologia](#metodologia-camada-de-dados)
+	* [Portão de acesso a dados em linha](#portão-de-acesso-a-dados-em-linha)
 	
 	
 #### Especificações das máquinas
