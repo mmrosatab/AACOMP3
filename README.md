@@ -1,6 +1,6 @@
-# AACOMP3
+### AACOMP3
 
-Este repositório se destina a Atividade Acadêmica de Computação III da UFRRJ. O trabalho consiste em um construir uma aplicação Web voltada para auxiliar a preservação de museus, de seus acervos e obras através de avaliações dos visitantes utilizando padrões arquiteturais e testes vistos na disciplina Computação III.
+Este repositório se destina a Atividade Acadêmica de Computação III da UFRRJ. O trabalho consiste em um construir uma aplicação Web voltada para auxiliar a preservação de museus, de seus acervos e obras através de avaliações dos visitantes utilizando padrões arquiteturais e testes automatizados vistos na disciplina Computação III. O padrão arquitetural empregado para a camada de domínio foi o *modelo de domínio simples* e para a camada de dados foi usado o *portão de acesso a dados em linha*. 
 
 #### Colaboradores
 
@@ -13,14 +13,14 @@ Este repositório se destina a Atividade Acadêmica de Computação III da UFRRJ
 
 #### Índice
 
-* [Especificações das máquinas](#especificacoes-das-maquinas)
+* [Especificações das máquinas](#especificações-das-máquinas)
 * [Tecnologias utilizadas](#tecnologias-utilizadas)
-* [Organização dos pacotes do projeto](#organizacao-dos-pacotes-do-projeto)
-* [Camada de apresentação](#camada-de-apresentacao)
+* [Organização dos pacotes do projeto](#organização-dos-pacotes-do-projeto)
+* [Camada de apresentação](#camada-de-apresentação)
 * [Camada de domínio](#camada-de-dominio)
-	* [Metodologia](#metodologia-camada-de-dominio)
+	* [Modelo de domínio simples](#modelo-de-domínio-simples)
 * [Camada de dados](#camada-de-dados)
-	* [Metodologia](#metodologia-camada-de-dados)
+	* [Portão de acesso a dados em linha](#portão-de-acesso-a-dados-em-linha)
 	
 	
 #### Especificações das máquinas
@@ -44,9 +44,17 @@ Este repositório se destina a Atividade Acadêmica de Computação III da UFRRJ
 
 #### Organização dos pacotes do projeto  
 
-#### Camada de apresentação
+- src
+	- dados
+		- exception
+	- dominio
+		- exception
+	- testes
+	- mockObjets
 
-#### Camada de domínio
+#### Camada de apresentacao
+
+#### Camada de dominio
 
 #### Camada de dados
 
