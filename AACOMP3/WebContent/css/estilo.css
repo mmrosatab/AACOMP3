@@ -2,8 +2,8 @@ body
 {
 	margin: 0 0;
 	background-color: #E0E0E0;
-	font-size: 12px;
-	font-family: sans-serif, arial, times new romam;
+	font-size: 14px;
+	font-family: Lato, arial, times new romam;
 }
 
 header
@@ -11,13 +11,59 @@ header
 
 	border-style: solid;
 	border-color: transparent;
-	height : 40px;
-	background-color: #00bfff;
+	height : 20px;
+	background-color: DodgerBlue;
+	/*background-color: MediumSeaGreen;*/
+	padding: 2%;
+
 }
 
-main
+section
 {
-	margin: 4px 4px 4px 4px;
+	margin:1%;
 }
+
+
+a
+{
+	text-decoration: none;
+	margin:1%;
+	border-radius: 3px;
+	color: black;
+}
+
+.sub
+{
+    background-color: gray;
+	padding: 5px 20px;
+    font-size: .9em;
+    border-radius: 3px;
+   	color: black; 
+}
+
+div input:hover
+{
+	background-color: gray;
+	
+}
+
+input, label
+{
+	margin:1%;
+}
+
+input
+{
+	border-radius: 3px;	
+	color: black;
+}
+
+@font-face 
+{ 
+	font-family: Lato; 
+	src: url('../fonts/Lato/Lato-Regular.ttf'); 
+}
+
+
 
 

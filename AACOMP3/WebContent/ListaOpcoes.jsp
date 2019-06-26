@@ -12,15 +12,8 @@
 			<h2>SISTEMA DE APOIO À GESTÃO DE MUSEUS (SAGM)</h2>
 		</header>
 		<section>
-			<form action="identificarUsuario" method="post">
-				<label>Nome:</label>
-				<div><input type="text" name="nome"></div>
-				<label>CPF:</label>
-				<div><input type="text" name="cpf"></div>
-				<label>Senha:</label>  
-				<div><input type="password" name="senha"></div>
-				<input class='sub' type="submit" name="cmd" value="Identificar">
-			</form>
+			<p><a href='InformaSolicitacao.jsp'>Soliciticar Criacao Museu</a></p>
+			<p><a href='CriarMuseu.jsp'>Criar Museu</a></p>
 		</section>
 	</body>
 </html>
