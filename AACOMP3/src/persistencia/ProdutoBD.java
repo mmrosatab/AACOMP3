@@ -11,10 +11,10 @@ public class ProdutoBD
 	private static final String DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
 	
 	//String de conexao Andressa
-	// private static final String JDBC_URL = "jdbc:derby:/home/mmrosa/MyDB2;create=true";
+	 private static final String JDBC_URL = "jdbc:derby:/home/mmrosa/MyDB2;create=true";
 	
 	//String de conexao Mayara
-	private static final String JDBC_URL = "jdbc:derby:/home/mmrosa/MyDB2;create=true";
+	//private static final String JDBC_URL = "jdbc:derby:/home/mmrosa/MyDB2;create=true";
 	
 	private Connection conn;
 	private Statement stm;
@@ -30,7 +30,7 @@ public class ProdutoBD
 			
 			if (this.conn != null) 
 			{
-				System.out.println("Connectado com sucesso");
+				System.out.println("Conectado com sucesso");
 			}
 		} catch (SQLException e) 
 		{

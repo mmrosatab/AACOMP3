@@ -1,19 +1,39 @@
 package dominio;
 
 import java.io.IOException;
-
+import java.util.ArrayList;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-/**
- * Servlet implementation class EfetuarEmprestimoRT
- */
 @WebServlet("/solicitarCriacaoMuseu")
+
 public class SolicitacaoMuseuMD extends HttpServlet
 {
+	private String nome;
+	private Date dataCriacao;
+	private String cidade;
+	private String estado;
+	private String nomeGestor;
+	private String senhaGestor;
+	private ArrayList <SolicitacaoMuseuMD> solicitacoes;
+	
+	public SolicitacaoMuseuMD(String nome, Date data, String cid, String est, String nomeG, String senha)
+	{
+		this.nome 			= nome;
+		this.dataCriacao 	= data;
+		this.cidade 		= cid;
+		this.estado 		= est;
+		this.nomeGestor 	= nomeG;
+		this.senhaGestor 	= senha;
+	}
+	
+	public SolicitacaoMuseuMD()
+	{
+		
+	}
 	private static final long serialVersionUID = 1L;
 	
 	/**
@@ -21,7 +41,7 @@ public class SolicitacaoMuseuMD extends HttpServlet
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().invalidate();
-		request.getRequestDispatcher("InformeSolicitacao.jsp").forward(request, response);
+		request.getRequestDispatcher("InformaSolicitacao.jsp").forward(request, response);
 	}
 
 	/**
@@ -73,5 +93,6 @@ public class SolicitacaoMuseuMD extends HttpServlet
 		}
 		*/
 	}
+	
 
 }
