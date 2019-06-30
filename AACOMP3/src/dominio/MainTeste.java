@@ -7,7 +7,7 @@ public class MainTeste {
 		Funcionario gestor = new Gestor("Andressa", "1461018892", "aiQue.absurdo");
 		gestor.dizerQuemSou();
 
-		System.out.println(Cpf.validar("14610164793"));
+		//System.out.println(Cpf.validar("14610164793"));
 
 	}
 

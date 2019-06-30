@@ -35,17 +35,44 @@
 				</div>
 			</form>
 			<form action="solicitarCriacaoMuseu" method="post">
-			
+				<% String meu_nome 		= "";
+				   String minhaData 	= "";
+				   String cidade 		= "";
+				   String cpf 			= "";
+				   String nomeG 		= "";
+				   
+				   if(request.getAttribute("meu_nome") != null)
+				   {
+					   meu_nome = request.getAttribute("meu_nome").toString();
+				   }
+				   if(request.getAttribute("dataCriacao") != null)
+				   {
+					   minhaData = request.getAttribute("dataCriacao").toString();
+				   }
+				   if(request.getAttribute("cidade") != null)
+				   {
+					   cidade = request.getAttribute("cidade").toString();
+				   }
+				   if(request.getAttribute("cpf") != null)
+				   {
+					   cpf = request.getAttribute("cpf").toString();
+				   }
+				   if(request.getAttribute("nomeGestor") != null)
+				   {
+					   nomeG = request.getAttribute("nomeGestor").toString();
+				   }
+				   
+				%>
 				<label>Nome:</label>
-				<div><input type="text" name="nome"></div>
+				<div><input type="text" name="meu_nome" value= <%=meu_nome%>></div>
 				<label>Data de Criação:</label> 
-				<div><input type="text" name="dataCriacao"></div> 
+				<div><input type="text" name="dataCriacao" value = <%=minhaData %>></div> 
 				<label>Cidade:</label>
-				<div><input type="text" name="cidade"></div> 
+				<div><input type="text" name="cidade" value = <%=cidade%>></div> 
 				<label>CPF gestor:</label>
-				<div><input type="text" name="cpf"></div>
+				<div><input type="text" name="cpf" value = <%=cpf%>></div>
 				<label>Nome do gestor:</label>
-				<div><input type="text" name="nomeGestor"></div>
+				<div><input type="text" name="nomeGestor" value = <%=nomeG%>></div>
 				<input class='sub' type="submit" name="cmd" value="Criar Museu">
 				
 			</form>

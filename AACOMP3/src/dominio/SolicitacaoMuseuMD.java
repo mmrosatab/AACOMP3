@@ -10,7 +10,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import exception.CpfInvalidoException;
+import exception.DadosFaltandoException;
+import exception.DadosUsuarioException;
+import exception.SenhaInvalidaException;
 import mock_object.CamadaDadosMock;
+import net.bytebuddy.asm.Advice.This;
 @WebServlet("/solicitarCriacaoMuseu")
 
 public class SolicitacaoMuseuMD extends HttpServlet
@@ -50,23 +55,6 @@ public class SolicitacaoMuseuMD extends HttpServlet
 		return dataCriacao;
 	}
 	
-	public String getCidade()
-	{
-		return cidade;
-	}
-	public String getEstado()
-	{
-		return estado;
-	}
-	public String getNomeGestor()
-	{
-		return nomeGestor;
-	}
-	public String getCpfGestor()
-	{
-		return cpfGestor;
-	}
-	
 	public boolean checarCpf()
 	{
 		ArrayList <Usuario> usuarios = CamadaDadosMock.buscarUsuarios();
@@ -91,29 +79,147 @@ public class SolicitacaoMuseuMD extends HttpServlet
 		return solicitacoes;		
 	}
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	private void setarSolicitacao(String [] chave)
 	{
-		String sol 	   = request.getParameter("opcoes");
-		System.out.println(sol);
-		String [] data = sol.split("-");
-		
 		for(SolicitacaoMuseuMD solicitacao:solicitacoes)
 		{
-			if(solicitacao.nome.equalsIgnoreCase(data[1]) && solicitacao.dataCriacao.equalsIgnoreCase(data[0]))
+			if(chave.length == 2)
 			{
-				System.out.println("ifao");
-				this.nome 		 = solicitacao.nome;
-				this.dataCriacao = solicitacao.dataCriacao;
-				this.cidade 	 = solicitacao.cidade;
-				this.estado 	 = solicitacao.estado;
-				this.nomeGestor  = solicitacao.nomeGestor;
-				this.senhaGestor = solicitacao.senhaGestor;
-				this.cpfGestor 	 = solicitacao.cpfGestor;
-				System.out.println(this.cpfGestor);
+				try
+				{
+					if(solicitacao.nome.equalsIgnoreCase(chave[1]) && solicitacao.dataCriacao.equalsIgnoreCase(chave[0]))
+					{
+						this.nome 		 = solicitacao.nome;
+						this.dataCriacao = solicitacao.dataCriacao;
+						this.cidade 	 = solicitacao.cidade;
+						this.estado 	 = solicitacao.estado;
+						this.nomeGestor  = solicitacao.nomeGestor;
+						this.senhaGestor = solicitacao.senhaGestor;
+						this.cpfGestor 	 = solicitacao.cpfGestor;
+					}
+				}
+				catch(NullPointerException e)
+				{
+					this.nome 		 = solicitacao.nome;
+					this.dataCriacao = solicitacao.dataCriacao;
+					this.cidade 	 = solicitacao.cidade;
+					this.estado 	 = solicitacao.estado;
+					this.nomeGestor  = solicitacao.nomeGestor;
+					this.senhaGestor = solicitacao.senhaGestor;
+					this.cpfGestor 	 = solicitacao.cpfGestor;
+				}
+				
+			}			
+		}
+	}
+	
+	private void verificarDadosSolicitacao(String nome, String data, String cidade, String nomeG, String cpf) throws DadosFaltandoException
+	{
+		if(nome == null || data == null || cidade == null || nomeG == null || cpf == null)
+		{
+			throw new DadosFaltandoException("Ausência de dados da solicitacao");
+		}
+		if(nome.isEmpty() || data.isEmpty() || cidade.isEmpty() || nomeG.isEmpty() || cpf.isEmpty())
+		{
+			throw new DadosFaltandoException("Ausência de dados da solicitacao.");
+		}
+		if(nome.equalsIgnoreCase(" ") || data.equalsIgnoreCase(" ") ||
+				cidade.equalsIgnoreCase(" ") || nomeG.equalsIgnoreCase(" ") || cpf.equalsIgnoreCase(" "))
+		{
+			throw new DadosFaltandoException("Ausência de dados da solicitacao.");
+		}
+	}
+	
+	private void verificarDadosUsuario(String nome, String senha) throws DadosUsuarioException, SenhaInvalidaException
+	{
+		if(nome == null || senha == null)
+		{
+			throw new DadosUsuarioException();
+		}
+		if(nome.isEmpty() || senha.isEmpty())
+		{
+			throw new DadosUsuarioException();
+		}
+		if(nome.equalsIgnoreCase(" ") || senha.equalsIgnoreCase(" "))
+		{
+			throw new DadosUsuarioException();
+		}
+		if(!ehValida(senha))
+		{
+			throw new SenhaInvalidaException();
+		}
+	}
+	
+	private boolean ehValida(String senha)
+	{
+		if(senha.length() != 6)
+		{
+			return false;
+		}
+		for(int i=0; i < senha.length(); i++)
+		{
+			if(senha.charAt(i) == '.' || senha.charAt(i) == '/' || senha.charAt(i) == '\\' ||
+					senha.charAt(i) == ';' || senha.charAt(i) == '@' || senha.charAt(i) == '#' ||
+					senha.charAt(i) == '$' || senha.charAt(i) == '%' || senha.charAt(i) == '*' ||
+					senha.charAt(i) == '(' || senha.charAt(i) == ')' || senha.charAt(i) == '!' || senha.charAt(i) == '?')
+			{
+				return false;
 			}
 		}
+		return true;
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
+		String teste = request.getParameter("cmd");
 		
-		System.out.println("Há usuário associado? " +checarCpf());		
+		if(teste.equalsIgnoreCase("ok"))
+		{
+			String sol 	   = request.getParameter("opcoes");
+			String [] data = sol.split("-");
+			setarSolicitacao(data);
+			
+			request.setAttribute("meu_nome", this.nome);
+			request.setAttribute("dataCriacao", this.dataCriacao);
+			request.setAttribute("cidade", this.cidade);
+			request.setAttribute("cpf", this.cpfGestor);
+			request.setAttribute("nomeGestor", this.nomeGestor);
+			request.getRequestDispatcher("CriarMuseu.jsp").forward(request, response);
+		}
+		
+		if(teste.equalsIgnoreCase("criar museu"))
+		{
+			/* VERIFICAR DADOS DA SOLICITACAO */
+			try
+			{
+				verificarDadosSolicitacao(this.nome, this.dataCriacao, this.cidade, this.nomeGestor, this.cpfGestor);
+				try
+				{
+					Cpf.validar(this.cpfGestor);
+					verificarDadosUsuario(this.nomeGestor, this.cpfGestor);
+				}
+				catch(CpfInvalidoException e)
+				{
+					System.out.println("A exceção funcionou! O cpf é inválido!");
+				} catch (DadosUsuarioException e) {
+					System.out.println("Nome ou senha faltando.");
+				} catch (SenhaInvalidaException e) {
+					System.out.println("Senha inválida!");
+				}
+			}
+			catch(DadosFaltandoException e)
+			{
+				System.out.println("A exceção funcionou! Preencha os campos!");
+			}
+			
+			response.sendRedirect("CriarMuseu.jsp");
+		}
+		
+	}
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException
+	{
+
 	}
 
 }
