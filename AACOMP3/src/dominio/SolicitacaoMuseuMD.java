@@ -1,21 +1,25 @@
 package dominio;
 
-import mock_object.*;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import exception.CpfInvalidoException;
-import exception.DadosFaltandoException;
-import exception.DadosUsuarioException;
-import exception.SenhaInvalidaException;
-import mock_object.CamadaDadosMock;
-import net.bytebuddy.asm.Advice.This;
+import dominio.exception.CpfInvalidoException;
+import dominio.exception.DadosFaltandoException;
+import dominio.exception.DadosUsuarioException;
+import dominio.exception.GestorException;
+import dominio.exception.SenhaInvalidaException;
+import dominio.exception.UsuarioAssociadoException;
+import mockobject.CamadaDadosMock;
+import mockobject.SolicitacaoFinderMock;
+import mockobject.SolicitacaoGateway;
+import mockobject.UsuarioGatewayMock;
+import util.Cpf;
 @WebServlet("/solicitarCriacaoMuseu")
 
 public class SolicitacaoMuseuMD extends HttpServlet
@@ -30,7 +34,28 @@ public class SolicitacaoMuseuMD extends HttpServlet
 	private String senhaGestor;
 	private String cpfGestor;
 	private static ArrayList <SolicitacaoMuseuMD> solicitacoes = new ArrayList<SolicitacaoMuseuMD>();
+		
 	
+	public String getDataCriacao() {
+		return dataCriacao;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public String getSenhaGestor() {
+		return senhaGestor;
+	}
+
+	public String getCpfGestor() {
+		return cpfGestor;
+	}
+
 	public SolicitacaoMuseuMD(String nome, String data, String cid, String est, String nomeG, String cpf, String senha)
 	{
 		this.nome			= nome;
@@ -48,24 +73,32 @@ public class SolicitacaoMuseuMD extends HttpServlet
 	}
 	
 	public String getNome() {
-		return nome;
+		return this.nome;
 	}
 	
 	public String getData() {
-		return dataCriacao;
+		return this.dataCriacao;
 	}
 	
-	public boolean checarCpf()
+	public void checarCpf() throws  GestorException, UsuarioAssociadoException
 	{
 		ArrayList <Usuario> usuarios = CamadaDadosMock.buscarUsuarios();
 		for(Usuario user:usuarios)
 		{
 			if(user.getCpf() == this.cpfGestor)
 			{
-				return true;
+				if(user.getClass().getName().equalsIgnoreCase("dominio.Gestor"))
+				{
+					System.out.println(user.getClass().getName() + " " +user.getCpf());
+					throw new GestorException();
+				}
+
+				else
+				{
+					throw new UsuarioAssociadoException();
+				}
 			}
 		}
-		return false;
 	}
 
 	private static void buscarSolicitacoes()
@@ -154,6 +187,7 @@ public class SolicitacaoMuseuMD extends HttpServlet
 	{
 		if(senha.length() != 6)
 		{
+			System.out.println("tamanho = "+ senha.length());
 			return false;
 		}
 		for(int i=0; i < senha.length(); i++)
@@ -172,6 +206,19 @@ public class SolicitacaoMuseuMD extends HttpServlet
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		String teste = request.getParameter("cmd");
+		
+		if(teste.equalsIgnoreCase("iniciar solicitacao"))
+		{
+			
+			SolicitacaoMuseuMD mySolicitacao = new SolicitacaoMuseuMD(request.getParameter("nome"),
+					request.getParameter("dataCriacao"),request.getParameter("cidade"),
+					request.getParameter("estado"),request.getParameter("nomeGestor"),
+					request.getParameter("cpf"),request.getParameter("senhaGestor"));
+			
+			SolicitacaoGateway us = new SolicitacaoGateway();
+			us.inserir(mySolicitacao);
+			response.sendRedirect("ListarOpcoes.jsp");
+		}
 		
 		if(teste.equalsIgnoreCase("ok"))
 		{
@@ -196,25 +243,51 @@ public class SolicitacaoMuseuMD extends HttpServlet
 				try
 				{
 					Cpf.validar(this.cpfGestor);
-					verificarDadosUsuario(this.nomeGestor, this.cpfGestor);
+					verificarDadosUsuario(this.nomeGestor, this.senhaGestor);
+					checarCpf();
+				
+					/* CRIAR GESTOR, CRIAR MUSEU, E ADD GESTOR AO MUSEU E DEPOIS INSERIR NO BANCO */
+					
+					Gestor gestor = new Gestor(this.nomeGestor, this.cpfGestor, this.senhaGestor);
+					MuseuMD meuMuseu = new MuseuMD(this.nome, this.dataCriacao, this.cidade, this.estado, gestor);
+					//UsuarioGateway -- inserir no banco
+					response.sendRedirect("DiaFeliz.jsp");
 				}
 				catch(CpfInvalidoException e)
 				{
-					System.out.println("A exceção funcionou! O cpf é inválido!");
-				} catch (DadosUsuarioException e) {
+					System.out.println("Cpf é inválido!");
+					
+				} catch (DadosUsuarioException e)
+				{
 					System.out.println("Nome ou senha faltando.");
-				} catch (SenhaInvalidaException e) {
+					
+				} catch (SenhaInvalidaException e)
+				{
 					System.out.println("Senha inválida!");
+				}
+				catch(GestorException e)
+				{
+					System.out.println("O usuário já é um gestor.");
+				}
+				catch(UsuarioAssociadoException e)
+				{
+					/* TROCAR TIPO DO USUÁRIO PRA GESTOR */
+					
+					UsuarioGatewayMock teste1 = new UsuarioGatewayMock();
+					Gestor gt 				  = new Gestor(this.nomeGestor, this.cpfGestor, this.senhaGestor);
+					teste1.trocaTipo(gt);
+					
+					MuseuMD meuMuseu = new MuseuMD(this.nome, this.dataCriacao, this.cidade, this.estado, gt);
+					//UsuarioGateway -- inserir no banco
+					response.sendRedirect("DiaFeliz.jsp");
 				}
 			}
 			catch(DadosFaltandoException e)
 			{
 				System.out.println("A exceção funcionou! Preencha os campos!");
-			}
-			
-			response.sendRedirect("CriarMuseu.jsp");
-		}
-		
+				response.sendRedirect("CriarMuseu.jsp");
+			}	
+		}	
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException

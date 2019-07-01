@@ -23,6 +23,8 @@
 				<div><input type="text" name="estado"></div>
 				<label>Nome do gestor:</label>
 				<div><input type="text" name="nomeGestor"></div>
+				<label>CPF do gestor:</label>
+				<div><input type="text" name="cpf"></div>
 				<label>Senha do gestor:</label>
 				<div><input type="password" name="senhaGestor"></div>
 				<input class='sub' type="submit" name="cmd" value="Iniciar Solicitacao">

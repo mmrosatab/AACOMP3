@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.ArrayList" %>
+<%@page import="dominio.*" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +15,7 @@
 			<h2>SISTEMA DE APOIO À GESTÃO DE MUSEUS (SAGM)</h2>
 		</header>
 		<section>
-			<div class='texto'>Área de identificação do usuário</div>
+			<div class='texto'><p>Área de identificação do usuário</p></div>
 			<form action="index" method="post">
 				<label>CPF:</label>
 				<div><input type="text" name="cpf"></div>

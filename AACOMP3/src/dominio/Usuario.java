@@ -12,17 +12,17 @@ public abstract class Usuario {
 		this.senha 	= senha;
 	}
 	
-	protected String getNome()
+	public String getNome()
 	{
 		return this.nome;
 	}
 	
-	protected String getCpf()
+	public String getCpf()
 	{
 		return this.cpf;
 	}
 	
-	protected String getSenha()
+	public String getSenha()
 	{
 		return this.senha;
 	}
