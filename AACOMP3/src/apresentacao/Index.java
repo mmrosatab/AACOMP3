@@ -12,10 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import dados.UsuarioFinder;
 import dominio.Usuario;
 
-/**
- * Servlet implementation class Index
- */
-
 @WebServlet("/index")
 public class Index extends HttpServlet
 {
@@ -23,7 +19,7 @@ public class Index extends HttpServlet
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		String cpf = request.getParameter("cpf");
+		String cpf 	 = request.getParameter("cpf");
         String senha = request.getParameter("senha");
 
 	    if (cpf.isEmpty()|| senha.isEmpty()) 
@@ -41,8 +37,6 @@ public class Index extends HttpServlet
 			
 			usuarios = usuarioFinder.buscarTodos();
 			
-			System.out.println(usuarios.get(0).getNome());
-			
 			try {
 				
 				for (Usuario us : usuarios) 
@@ -56,20 +50,20 @@ public class Index extends HttpServlet
 				}
 				
 			} catch (NullPointerException e) {
-				// TODO: handle exception
+				
 				System.out.println("Usuario não encontrado");
 			}
 			
-			if (macth)
+			if(macth)
 			{
-				response.sendRedirect("ListarOpcoes.jsp");
+				request.setAttribute("nome", user.getNome());
+				request.getRequestDispatcher("ListarOpcoes.jsp").forward(request, response);
 			
 			}else
 			{
 				System.out.println("Voce não esta cadastrado no sistema");
 				response.sendRedirect("index.jsp");
 			}
- 
         }
 	}
 	

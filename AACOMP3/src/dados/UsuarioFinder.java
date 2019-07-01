@@ -61,6 +61,7 @@ public class UsuarioFinder
 				usuario =  new Gestor(res.getString(2),res.getString(1),res.getString(3));
 			}
 	
+			this.conn.close();
             res.close();
 			this.stm.close();
 			
@@ -68,10 +69,9 @@ public class UsuarioFinder
 		
 		} catch (SQLException e) 
 		{
-			 e.printStackTrace();
+			 System.out.println("Erro ao conectar com o banco de dados.");
 		}
 		return null;
-		
 		
 	}
 	
@@ -82,7 +82,6 @@ public class UsuarioFinder
 		
 		try 
 		{	
-		
 			this.conn = DriverManager.getConnection(JDBC_URL);
 			
 			if (this.conn != null) 
@@ -111,7 +110,8 @@ public class UsuarioFinder
 		
 				 usuarios.add(usuario);
 	         }
-	
+			 
+		   this.conn.close();
            res.close();
            this.stm.close();
 			
@@ -119,7 +119,7 @@ public class UsuarioFinder
 			
 		} catch (SQLException e) 
 		{
-			 e.printStackTrace();
+			 System.out.println("Erro ao conectar com o banco de dados.");
 		}
 		return null;
 	

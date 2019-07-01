@@ -45,13 +45,14 @@ public class UsuarioGateway
 				ps.setString(7, museu.getCidade());
 				ps.setString(8, museu.getEstado());
 				ps.executeUpdate();
-				this.conn.close();
 			}
+			
+			this.conn.close();
 			
 			
 		} catch (SQLException e) 
 		{
-			 e.printStackTrace();
+			 System.out.println("Erro ao conectar com o banco de dados.");
 		}
 	}
 	
@@ -78,13 +79,13 @@ public class UsuarioGateway
 				ps.setString(7, "");
 				ps.setString(8, "");
 				ps.executeUpdate();
-				this.conn.close();
+				
 			}
-			
+			this.conn.close();
 			
 		} catch (SQLException e) 
 		{
-			 e.printStackTrace();
+			 System.out.println("Erro ao conectar com o banco de dados.");
 		}
 	}
 	
@@ -101,14 +102,12 @@ public class UsuarioGateway
 				PreparedStatement ps = this.conn.prepareStatement(query);
 				ps.setInt(1, tipo);
 				ps.executeUpdate();
-				
-				this.conn.close();
 			}
-			
+			this.conn.close();
 			
 		} catch (SQLException e) 
 		{
-			 e.printStackTrace();
+			 System.out.println("Erro ao conectar com o banco de dados.");
 		}
 	}
 	
@@ -125,13 +124,12 @@ public class UsuarioGateway
 				
 				PreparedStatement ps = this.conn.prepareStatement(query);
 				ps.executeUpdate();
-				this.conn.close();
 			}
-			
+			this.conn.close();
 			
 		} catch (SQLException e) 
 		{
-			 e.printStackTrace();
+			 System.out.println("Erro ao conectar com o banco de dados.");
 		}
 	}
 

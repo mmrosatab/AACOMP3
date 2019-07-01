@@ -32,39 +32,37 @@ public class SolicitacaoFinder
 		try 
 		{	
 		
-			this.conn = DriverManager.getConnection(JDBC_URL);
-			
+			this.conn 			  = DriverManager.getConnection(JDBC_URL);
+			SolicitacaoMuseuMD us = null;
 			if (this.conn != null) 
 			{
 				System.out.println("Connectado com sucesso");
+				this.stm = conn.createStatement();
+				
+				ResultSet res = this.stm.executeQuery(query);
+				
+				res.next();
+				
+				us = new SolicitacaoMuseuMD(res.getString(1),
+						res.getString(2),
+						res.getString(4),
+						res.getString(5),
+						res.getString(6),
+						res.getString(3),
+						res.getString(7));
+						res.close();
 			}
 			
-			this.stm = conn.createStatement();
-			
-			ResultSet res = this.stm.executeQuery(query);
-			
-			res.next();
-			
-			SolicitacaoMuseuMD us = new SolicitacaoMuseuMD(res.getString(1),
-					res.getString(2),
-					res.getString(4),
-					res.getString(5),
-					res.getString(6),
-					res.getString(3),
-					res.getString(7));
-			
-            res.close();
+			this.conn.close();
             this.stm.close();
 			
 			return us;
 		
 		} catch (SQLException e) 
 		{
-			 e.printStackTrace();
+			System.out.println("Erro ao conectar com o banco de dados.");
 		}
 		return null;
-		
-		
 	}
 	
 	public ArrayList<SolicitacaoMuseuMD> buscarTodos() 
@@ -75,39 +73,41 @@ public class SolicitacaoFinder
 		try 
 		{	
 		
-			this.conn = DriverManager.getConnection(JDBC_URL);
+			this.conn 			  = DriverManager.getConnection(JDBC_URL);
+			SolicitacaoMuseuMD us = null;
+			ArrayList<SolicitacaoMuseuMD > solicitacoes = null;
 			
 			if (this.conn != null) 
 			{
 				System.out.println("Connectado com sucesso");
-			}
-			
-			this.stm = conn.createStatement();
-			
-			ResultSet res = this.stm.executeQuery(query);
-			ArrayList<SolicitacaoMuseuMD > solicitacoes = new ArrayList<SolicitacaoMuseuMD>();
+				
+				this.stm = conn.createStatement();
+				
+				ResultSet res = this.stm.executeQuery(query);
+				solicitacoes  = new ArrayList<SolicitacaoMuseuMD>();
 
-			 while(res.next())
-	         {
-				 SolicitacaoMuseuMD us = new SolicitacaoMuseuMD(res.getString(1),
-							res.getString(2),
-							res.getString(4),
-							res.getString(5),
-							res.getString(6),
-							res.getString(3),
-							res.getString(7));
-				 
-				 solicitacoes.add(us);
-	         }
-	
-           res.close();
+				 while(res.next())
+		         {
+					 us = new SolicitacaoMuseuMD(res.getString(1),
+								res.getString(2),
+								res.getString(4),
+								res.getString(5),
+								res.getString(6),
+								res.getString(3),
+								res.getString(7));
+					 
+					 solicitacoes.add(us);
+		         }
+				 res.close();
+			}
+				
+		   this.conn.close();
            this.stm.close();
-			
            return solicitacoes;
 			
 		} catch (SQLException e) 
 		{
-			 e.printStackTrace();
+			 System.out.println("Erro ao conectar com o banco de dados.");
 		}
 		return null;
 	
