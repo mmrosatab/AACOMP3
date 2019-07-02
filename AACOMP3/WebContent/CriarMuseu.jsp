@@ -21,12 +21,13 @@
 					   s = SolicitacaoMuseuMD.listarSolicitacoes();
 					   String nome;
 					   String data;
+					   String [] semEspaco;
 					   for(SolicitacaoMuseuMD sol:s){
 						   nome  = sol.getNome();
 						   data  = sol.getData();
-						   data = data +"_"+ nome;
+						   data = data + "-" +nome.replace(" ", "");
 					%>				
-					    <option value= <%=nome%> > <%=nome%> </option>
+					    <option value= <%= data%> > <%=nome%> </option>
 					<%}%>
 					</select>
 					<input class='sub' type="submit" name="cmd" value="Ok">

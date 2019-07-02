@@ -121,15 +121,13 @@ public class SolicitacaoMuseuMD extends HttpServlet
 	{
 		for(SolicitacaoMuseuMD solicitacao:solicitacoes)
 		{
-			System.out.println("Tô setando a solicitacao!");
-			System.out.println("solicitacao " + solicitacao.getNome());
-			System.out.println("Tamanho da chave é: " + chave.length);
+			String semEspaco = solicitacao.nome.replace(" ", "");
 	
 			if(chave.length == 2)
 			{
 				try
 				{
-					if(solicitacao.nome.equalsIgnoreCase(chave[1]) && solicitacao.dataCriacao.equalsIgnoreCase(chave[0]))
+					if(semEspaco.equalsIgnoreCase(chave[1]) && solicitacao.dataCriacao.equalsIgnoreCase(chave[0]))
 					{
 						System.out.println("entrei no if");
 						
@@ -237,11 +235,11 @@ public class SolicitacaoMuseuMD extends HttpServlet
 		if(teste.equalsIgnoreCase("ok"))
 		{
 			String sol 	   = request.getParameter("opcoes");
-			String [] data = sol.split("_");
+			String [] data = sol.split("-");
 			System.out.println(sol);
 			setarSolicitacao(data);
 			
-			request.setAttribute("meu_nome", this.nome);
+			request.setAttribute("meu_nome", this.nome.replace(" ", ""));
 			System.out.println("No servlet meu_nome =" + this.nome);
 			request.setAttribute("dataCriacao", this.dataCriacao);
 			request.setAttribute("cidade", this.cidade);
