@@ -17,9 +17,13 @@ public class SolicitacaoFinder
 	private Connection conn;
 	private Statement stm;
 	
-	public SolicitacaoFinder() throws ClassNotFoundException 
+	public SolicitacaoFinder()
 	{
-		Class.forName(DRIVER);
+		try {
+			Class.forName(DRIVER);
+		} catch (ClassNotFoundException e) {
+			System.out.println("Erro com DRIVER no banco de dados.");
+		}
 	}
 
 	public SolicitacaoMuseuMD buscar(String nome, String dataCriacao)

@@ -13,13 +13,17 @@ public class SolicitacaoGateway
 	private static final String JDBC_URL = "jdbc:derby:/home/andressa/MyDB;create=true";
 	private Connection conn;
 	
-	public SolicitacaoGateway() throws ClassNotFoundException 
+	public SolicitacaoGateway()
 	
 	{
-		Class.forName(DRIVER);
+		try {
+			Class.forName(DRIVER);
+		} catch (ClassNotFoundException e) {
+			System.out.println("Erro com DRIVER no banco de dados.");
+		}
 	}
     
-	public void inserir(SolicitacaoMuseuMD solicitacao) throws ClassNotFoundException
+	public void inserir(SolicitacaoMuseuMD solicitacao)
 	{
 		
 		try 

@@ -19,7 +19,7 @@ public class UsuarioFinder
 	private Connection conn;
 	private Statement stm;
 	
-	public UsuarioFinder() //throws ClassNotFoundException 
+	public UsuarioFinder()
 	{
 		try {
 			Class.forName(DRIVER);
@@ -41,29 +41,23 @@ public class UsuarioFinder
 			
 			if (this.conn != null) 
 			{
-				System.out.println("Connectado com sucesso");
+				System.out.println("Conectado com sucesso");
 			}
 			
-			this.stm = conn.createStatement();
-			
-			
+			this.stm = conn.createStatement();			
 			ResultSet res = this.stm.executeQuery(query);
-			
-			
 			Usuario usuario = null;
-			
 			res.next();
-			
 			
 			if (res.getInt(4) == 0)
 			{
-				
 				usuario =  new Gestor(res.getString(2),res.getString(1),res.getString(3));
 			}
 	
-			this.conn.close();
+			
             res.close();
 			this.stm.close();
+			this.conn.close();
 			
 			return usuario;
 		
@@ -120,6 +114,15 @@ public class UsuarioFinder
 		} catch (SQLException e) 
 		{
 			 System.out.println("Erro ao conectar com o banco de dados.");
+		}
+		finally
+		{
+			try {
+				this.conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				System.out.println("Erro ao encerrar a conexão com o banco de dados.");
+			}
 		}
 		return null;
 	

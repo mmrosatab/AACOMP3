@@ -13,9 +13,10 @@
 		</header>
 		<section>
 			<div class='texto'>Olá, <%=request.getAttribute("nome")%> </div> 
-			<div class='texto'>Função: ADM</div>
-			<p><a href='InformaSolicitacao.jsp'>Soliciticar Criacao Museu</a></p>
-			<p><a href='CriarMuseu.jsp'>Criar Museu</a></p>
+			<div class='texto'>Função: <%=request.getAttribute("funcao")%> </div>
+			<div><a href='InformarSolicitacao.jsp'>Solicitar Criação Museu</a>
+				 <a href='CriarMuseu.jsp'>Criar Museu</a>
+			</div>
 		</section>
 	</body>
 </html>

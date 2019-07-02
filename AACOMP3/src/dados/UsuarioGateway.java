@@ -16,10 +16,14 @@ public class UsuarioGateway
 	private Connection conn;
 	
 	
-	public UsuarioGateway() throws ClassNotFoundException
+	public UsuarioGateway()
 	
 	{
-		Class.forName(DRIVER);
+		try {
+			Class.forName(DRIVER);
+		} catch (ClassNotFoundException e) {
+			System.out.println("Erro com DRIVER no banco de dados.");
+		}
 	}
 	
 	

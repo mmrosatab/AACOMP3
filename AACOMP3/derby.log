@@ -1,8 +1,8 @@
 ----------------------------------------------------------------
-Mon Jul 01 15:25:02 BRT 2019:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-016b-aec8-736f-0000034fecc8 
+Tue Jul 02 01:16:21 BRT 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-016b-b0e5-d363-0000036b4d00 
 on database directory /home/andressa/MyDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@5bc2b487 
-Loaded from file:/home/andressa/MEGA/GITHUB/AACOMP3/AACOMP3/libderby/derby.jar
+Loaded from file:/home/andressa/MEGA/GITHUB/AACOMP3/AACOMP3/WebContent/WEB-INF/lib/derby.jar
 java.vendor=Oracle Corporation
 java.runtime.version=12.0.1+12
 user.dir=/home/andressa/MEGA/GITHUB/AACOMP3/AACOMP3

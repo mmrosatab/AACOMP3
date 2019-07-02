@@ -2,7 +2,7 @@ package mockobject;
 
 import dominio.SolicitacaoMuseuMD;
 
-public class SolicitacaoGateway {
+public class SolicitacaoGatewayMock {
 	
 	public void inserir(SolicitacaoMuseuMD solicitacao)
 	{

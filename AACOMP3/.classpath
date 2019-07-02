@@ -21,6 +21,5 @@
 	<classpathentry kind="lib" path="/home/andressa/selenium-java-3.141.59/libs/guava-25.0-jre.jar"/>
 	<classpathentry kind="lib" path="/home/andressa/selenium-java-3.141.59/libs/commons-exec-1.3.jar"/>
 	<classpathentry kind="lib" path="/home/andressa/selenium-java-3.141.59/libs/byte-buddy-1.8.15.jar"/>
-	<classpathentry kind="lib" path="libderby/derby.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

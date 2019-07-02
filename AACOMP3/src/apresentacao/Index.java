@@ -11,6 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import dados.UsuarioFinder;
 import dominio.Usuario;
+import util.Funcao;
+
+/**
+ * Servlet implementation class Index
+ */
 
 @WebServlet("/index")
 public class Index extends HttpServlet
@@ -22,7 +27,7 @@ public class Index extends HttpServlet
 		String cpf 	 = request.getParameter("cpf");
         String senha = request.getParameter("senha");
 
-	    if (cpf.isEmpty()|| senha.isEmpty()) 
+        if (cpf.isEmpty()|| senha.isEmpty()) 
 	    {
 	        System.out.println("Todos os campos devem ser preenchidos");
 	        response.sendRedirect("index.jsp");
@@ -57,11 +62,13 @@ public class Index extends HttpServlet
 			if(macth)
 			{
 				request.setAttribute("nome", user.getNome());
+				System.out.println(Funcao.funcao(user));
+				request.setAttribute("funcao", Funcao.funcao(user));
 				request.getRequestDispatcher("ListarOpcoes.jsp").forward(request, response);
 			
 			}else
 			{
-				System.out.println("Voce não esta cadastrado no sistema");
+				System.out.println("Voce não esta cadastrado no sistema!");
 				response.sendRedirect("index.jsp");
 			}
         }

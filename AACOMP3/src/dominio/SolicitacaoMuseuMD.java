@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dados.SolicitacaoFinder;
+import dados.UsuarioFinder;
+import dados.UsuarioGateway;
+import dados.SolicitacaoGateway;
 import dominio.exception.CpfInvalidoException;
 import dominio.exception.DadosFaltandoException;
 import dominio.exception.DadosUsuarioException;
@@ -17,7 +21,7 @@ import dominio.exception.SenhaInvalidaException;
 import dominio.exception.UsuarioAssociadoException;
 import mockobject.CamadaDadosMock;
 import mockobject.SolicitacaoFinderMock;
-import mockobject.SolicitacaoGateway;
+import mockobject.SolicitacaoGatewayMock;
 import mockobject.UsuarioGatewayMock;
 import util.Cpf;
 @WebServlet("/solicitarCriacaoMuseu")
@@ -82,7 +86,8 @@ public class SolicitacaoMuseuMD extends HttpServlet
 	
 	public void checarCpf() throws  GestorException, UsuarioAssociadoException
 	{
-		ArrayList <Usuario> usuarios = CamadaDadosMock.buscarUsuarios();
+		UsuarioFinder us = new UsuarioFinder();
+		ArrayList <Usuario> usuarios = us.buscarTodos();
 		for(Usuario user:usuarios)
 		{
 			if(user.getCpf() == this.cpfGestor)
@@ -103,8 +108,8 @@ public class SolicitacaoMuseuMD extends HttpServlet
 
 	private static void buscarSolicitacoes()
 	{
-		SolicitacaoFinderMock finder = new SolicitacaoFinderMock();
-		solicitacoes 			 	 = finder.buscarTodos();
+		SolicitacaoFinder finder = new SolicitacaoFinder();
+		solicitacoes 			 = finder.buscarTodos();
 	}
 	public static ArrayList <SolicitacaoMuseuMD> listarSolicitacoes()
 	{
@@ -116,12 +121,18 @@ public class SolicitacaoMuseuMD extends HttpServlet
 	{
 		for(SolicitacaoMuseuMD solicitacao:solicitacoes)
 		{
+			System.out.println("Tô setando a solicitacao!");
+			System.out.println("solicitacao " + solicitacao.getNome());
+			System.out.println("Tamanho da chave é: " + chave.length);
+	
 			if(chave.length == 2)
 			{
 				try
 				{
 					if(solicitacao.nome.equalsIgnoreCase(chave[1]) && solicitacao.dataCriacao.equalsIgnoreCase(chave[0]))
 					{
+						System.out.println("entrei no if");
+						
 						this.nome 		 = solicitacao.nome;
 						this.dataCriacao = solicitacao.dataCriacao;
 						this.cidade 	 = solicitacao.cidade;
@@ -133,6 +144,7 @@ public class SolicitacaoMuseuMD extends HttpServlet
 				}
 				catch(NullPointerException e)
 				{
+					System.out.println("Tô setando a solicitacao");
 					this.nome 		 = solicitacao.nome;
 					this.dataCriacao = solicitacao.dataCriacao;
 					this.cidade 	 = solicitacao.cidade;
@@ -207,8 +219,9 @@ public class SolicitacaoMuseuMD extends HttpServlet
 	{
 		String teste = request.getParameter("cmd");
 		
-		if(teste.equalsIgnoreCase("iniciar solicitacao"))
+		if(teste.equalsIgnoreCase("Iniciar Solicitacao"))
 		{
+			System.out.println("Vou criar a solicitacao e tentar inserir, tô no doPost");
 			
 			SolicitacaoMuseuMD mySolicitacao = new SolicitacaoMuseuMD(request.getParameter("nome"),
 					request.getParameter("dataCriacao"),request.getParameter("cidade"),
@@ -217,16 +230,19 @@ public class SolicitacaoMuseuMD extends HttpServlet
 			
 			SolicitacaoGateway us = new SolicitacaoGateway();
 			us.inserir(mySolicitacao);
-			response.sendRedirect("ListarOpcoes.jsp");
+			
+			request.getRequestDispatcher("ListarOpcoes.jsp").forward(request, response);
 		}
 		
 		if(teste.equalsIgnoreCase("ok"))
 		{
 			String sol 	   = request.getParameter("opcoes");
-			String [] data = sol.split("-");
+			String [] data = sol.split("_");
+			System.out.println(sol);
 			setarSolicitacao(data);
 			
 			request.setAttribute("meu_nome", this.nome);
+			System.out.println("No servlet meu_nome =" + this.nome);
 			request.setAttribute("dataCriacao", this.dataCriacao);
 			request.setAttribute("cidade", this.cidade);
 			request.setAttribute("cpf", this.cpfGestor);
@@ -245,12 +261,14 @@ public class SolicitacaoMuseuMD extends HttpServlet
 					Cpf.validar(this.cpfGestor);
 					verificarDadosUsuario(this.nomeGestor, this.senhaGestor);
 					checarCpf();
+					System.out.println("gestor novo");
 				
 					/* CRIAR GESTOR, CRIAR MUSEU, E ADD GESTOR AO MUSEU E DEPOIS INSERIR NO BANCO */
 					
-					Gestor gestor = new Gestor(this.nomeGestor, this.cpfGestor, this.senhaGestor);
-					MuseuMD meuMuseu = new MuseuMD(this.nome, this.dataCriacao, this.cidade, this.estado, gestor);
-					//UsuarioGateway -- inserir no banco
+					Gestor gestor 			= new Gestor(this.nomeGestor, this.cpfGestor, this.senhaGestor);
+					MuseuMD meuMuseu 		= new MuseuMD(this.nome, this.dataCriacao, this.cidade, this.estado, gestor);
+					UsuarioGateway gateway 	= new UsuarioGateway();
+					gateway.inserir(meuMuseu);
 					response.sendRedirect("DiaFeliz.jsp");
 				}
 				catch(CpfInvalidoException e)
@@ -273,12 +291,15 @@ public class SolicitacaoMuseuMD extends HttpServlet
 				{
 					/* TROCAR TIPO DO USUÁRIO PRA GESTOR */
 					
-					UsuarioGatewayMock teste1 = new UsuarioGatewayMock();
-					Gestor gt 				  = new Gestor(this.nomeGestor, this.cpfGestor, this.senhaGestor);
-					teste1.trocaTipo(gt);
+					System.out.println("Usuario associado");
+					
+					UsuarioGateway gateway 	  = new UsuarioGateway();
+					Gestor gt 		      	  = new Gestor(this.nomeGestor, this.cpfGestor, this.senhaGestor);
+					gateway.atualizar(this.cpfGestor, 0);
 					
 					MuseuMD meuMuseu = new MuseuMD(this.nome, this.dataCriacao, this.cidade, this.estado, gt);
-					//UsuarioGateway -- inserir no banco
+	
+					gateway.inserir(meuMuseu);
 					response.sendRedirect("DiaFeliz.jsp");
 				}
 			}

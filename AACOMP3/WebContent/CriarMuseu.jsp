@@ -15,7 +15,26 @@
 		</header>
 		<section>
 			<form action="solicitarCriacaoMuseu" method="post">
-				<% String meu_nome 		= "";
+				<div>
+					<select class="texto" name="opcoes">
+					<% ArrayList<SolicitacaoMuseuMD> s  = new ArrayList<SolicitacaoMuseuMD>();
+					   s = SolicitacaoMuseuMD.listarSolicitacoes();
+					   String nome;
+					   String data;
+					   for(SolicitacaoMuseuMD sol:s){
+						   nome  = sol.getNome();
+						   data  = sol.getData();
+						   data = data +"_"+ nome;
+					%>				
+					    <option value= <%=nome%> > <%=nome%> </option>
+					<%}%>
+					</select>
+					<input class='sub' type="submit" name="cmd" value="Ok">
+				</div>
+			</form>
+			<form action="solicitarCriacaoMuseu" method="post">
+			
+			<% 	   String meu_nome 		= "";
 				   String minhaData 	= "";
 				   String cidade 		= "";
 				   String cpf 			= "";
@@ -24,6 +43,7 @@
 				   if(request.getAttribute("meu_nome") != null)
 				   {
 					   meu_nome = request.getAttribute("meu_nome").toString();
+					   System.out.println("meu_nome =" + meu_nome);
 				   }
 				   if(request.getAttribute("dataCriacao") != null)
 				   {
@@ -43,34 +63,17 @@
 				   }
 				   
 				%>
-				<div>
-					<select class="texto" name="opcoes"">
-					<% ArrayList<SolicitacaoMuseuMD> s  = new ArrayList<SolicitacaoMuseuMD>();
-					   s = SolicitacaoMuseuMD.listarSolicitacoes();
-					   String nome;
-					   String data;
-					   for(SolicitacaoMuseuMD sol:s){
-						   nome  = sol.getNome();
-						   data  = sol.getData();
-					%>				
-					    <option value= <%=data + "-" + nome%> > <%=nome%> </option>
-					<%}%>
-					</select>
-					<input class='sub' type="submit" name="cmd" value="Ok">
-				</div>
-			</form>
-			<form action="solicitarCriacaoMuseu" method="post">
 				
 				<label>Nome:</label>
-				<div><input type="text" name="meu_nome" value=<%= meu_nome%>></div>
+				<div><input type="text" name="meu_nome" value= <%=meu_nome%>></div>
 				<label>Data de Criação:</label> 
-				<div><input type="text" name="dataCriacao" value=<%=minhaData%>></div> 
+				<div><input type="text" name="dataCriacao" value= <%=minhaData%>></div> 
 				<label>Cidade:</label>
-				<div><input type="text" name="cidade" value=<%=cidade%>></div> 
+				<div><input type="text" name="cidade" value= <%=cidade%>></div> 
 				<label>CPF gestor:</label>
-				<div><input type="text" name="cpf" value=<%=cpf%>></div>
+				<div><input type="text" name="cpf" value= <%=cpf%>></div>
 				<label>Nome do gestor:</label>
-				<div><input type="text" name="nomeGestor" value=<%=nomeG%>></div>
+				<div><input type="text" name="nomeGestor" value= <%=nomeG%>></div>
 				<input class='sub' type="submit" name="cmd" value="Criar Museu">
 			</form>
 		</section>

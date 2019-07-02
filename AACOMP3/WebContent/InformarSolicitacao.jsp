@@ -12,6 +12,7 @@
 			<h2>SISTEMA DE APOIO À GESTÃO DE MUSEUS (SAGM)</h2>
 		</header>
 		<section>
+			<div class='texto'><p>Informe os dados da solicitação.<p></div>
 			<form action="solicitarCriacaoMuseu" method="post">
 				<label>Nome:</label>
 				<div><input type="text" name="nome"></div>
@@ -23,7 +24,7 @@
 				<div><input type="text" name="estado"></div>
 				<label>Nome do gestor:</label>
 				<div><input type="text" name="nomeGestor"></div>
-				<label>CPF do gestor:</label>
+				<label>CPF:</label>
 				<div><input type="text" name="cpf"></div>
 				<label>Senha do gestor:</label>
 				<div><input type="password" name="senhaGestor"></div>
