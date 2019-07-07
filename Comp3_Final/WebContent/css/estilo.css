@@ -1,0 +1,86 @@
+body
+{
+	margin: 0 0;
+	background-color: #E0E0E0;
+	font-size: 14px;
+	font-family: Lato, arial, times new romam;
+}
+
+header
+{
+
+	border-style: solid;
+	border-color: transparent;
+	height : 20px;
+	background-color: DodgerBlue;
+	/*background-color: MediumSeaGreen;*/
+	padding: 2%;
+
+}
+
+h1,h2
+{
+	margin:0;
+}
+
+section
+{
+	margin:1%;
+}
+
+.texto
+{
+	margin:1%;
+}
+
+
+a
+{
+	text-decoration: none;
+	margin:1%;
+	color: black;
+	background-color: gray;
+	padding: 6px;
+	border-radius: 3px;	
+	width: 160px;
+	display: flex;
+	flex-direction: row;
+	text-align: justify;
+}
+
+.sub
+{
+    background-color: gray;
+	padding: 5px 20px;
+    font-size: .9em;
+    border-radius: 3px;
+   	color: black; 
+}
+
+div input:hover
+{
+	background-color: gray;
+	
+}
+
+input, label
+{
+	margin:1%;
+}
+
+input
+{
+	border-radius: 3px;	
+	border-style: none;
+	color: black;
+}
+
+@font-face 
+{ 
+	font-family: Lato; 
+	src: url('../fonts/Lato/Lato-Regular.ttf'); 
+}
+
+
+
+
