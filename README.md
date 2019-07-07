@@ -63,4 +63,7 @@ Este repositório se destina a Atividade Acadêmica de Computação III da UFRRJ
 
 ![ClassesFinal](https://user-images.githubusercontent.com/9852787/60671542-afc16880-9e49-11e9-8aad-f97641d17abb.jpg)
 
+#### Tela inicial da aplicação
+
+![screenshot1](https://user-images.githubusercontent.com/9852787/60775082-2c776f80-a0f4-11e9-8ded-5d8e8baf438d.png)
 
